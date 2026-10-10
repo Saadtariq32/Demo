@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sigil — AI art protection prototype</title>
-<meta name="description" content="Clickable prototype of Sigil: fingerprint and encrypt your art, share it anywhere, and let an AI agent track usage and take down stolen copies.">
+<title>Sigil — art footprint &amp; royalties prototype</title>
+<meta name="description" content="Clickable prototype of Sigil: set up a digital footprint for your art, then collect royalties when it is used.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -62,7 +62,6 @@ body.overview .controls .nav-btn,body.overview .counter{display:none}
 @media (prefers-reduced-motion:no-preference){.slot.active .screen{animation:in .18s ease-out}}
 @keyframes in{from{opacity:.4}to{opacity:1}}
 </style>
-</head>
 <body>
 <div class="app">
   <aside>
@@ -71,23 +70,16 @@ body.overview .controls .nav-btn,body.overview .counter{display:none}
       Sigil
     </div>
     <div class="pitch">
-      <h1>Share your art anywhere. An AI agent watches where it goes.</h1>
-      <p>Fingerprint and encrypt every piece, publish to any platform, get plain-language usage summaries, and auto-file takedowns when someone steals it.</p>
+      <h1>Put your art on record. Get paid when it's used.</h1>
+      <p>Set up a digital footprint for every piece once. Sigil matches paid uses back to you and collects the royalties.</p>
     </div>
     <nav aria-label="Screens">
       <ul class="list">
         <li><a href="#Welcome" data-nav="Welcome"><span class="n">01</span>Welcome</a></li>
-<li><a href="#Signup" data-nav="Signup"><span class="n">02</span>Verify artist</a></li>
-<li><a href="#Upload" data-nav="Upload"><span class="n">03</span>Add artwork</a></li>
-<li><a href="#Protect" data-nav="Protect"><span class="n">04</span>Protection layers</a></li>
-<li><a href="#Share" data-nav="Share"><span class="n">05</span>Share to platforms</a></li>
-<li><a href="#Home" data-nav="Home"><span class="n">06</span>Home</a></li>
-<li><a href="#Tracking" data-nav="Tracking"><span class="n">07</span>Radar feed</a></li>
-<li><a href="#Artwork" data-nav="Artwork"><span class="n">08</span>Artwork + AI summary</a></li>
-<li><a href="#Alert" data-nav="Alert"><span class="n">09</span>Theft detected</a></li>
-<li><a href="#Takedown" data-nav="Takedown"><span class="n">10</span>Auto takedown</a></li>
-<li><a href="#Licensing" data-nav="Licensing"><span class="n">11</span>License requests</a></li>
-<li><a href="#Settings" data-nav="Settings"><span class="n">12</span>Agent settings</a></li>
+        <li><a href="#Upload" data-nav="Upload"><span class="n">02</span>Add artwork</a></li>
+        <li><a href="#Footprint" data-nav="Footprint"><span class="n">03</span>Digital footprint</a></li>
+        <li><a href="#Royalties" data-nav="Royalties"><span class="n">04</span>Royalties</a></li>
+        <li><a href="#Payout" data-nav="Payout"><span class="n">05</span>Collect payout</a></li>
       </ul>
     </nav>
     <div class="foot">Clickable hackathon prototype · sample data.<br><kbd>←</kbd> <kbd>→</kbd> step through · <kbd>O</kbd> overview</div>
@@ -95,684 +87,209 @@ body.overview .controls .nav-btn,body.overview .counter{display:none}
   <main>
     <div class="device" id="device">
       <div class="frame" id="frame">
-        <figure class="slot" data-id="Welcome" data-title="01 Welcome"><section class="screen" id="s-Welcome" aria-label="01 Welcome">
+
+<figure class="slot" data-id="Welcome" data-title="01 Welcome"><section class="screen" id="s-Welcome" aria-label="01 Welcome">
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column">
   <div style="position: relative; height: 380px; background: #17263A; overflow: hidden">
-    <svg viewBox="0 0 390 380" width="390" height="380" role="img" aria-label="Sample artwork, Tidal Bloom, with a protection grid overlaid" style="display: block">
+    <svg viewBox="0 0 390 380" width="390" height="380" role="img" aria-label="Sample artwork, Tidal Bloom" style="display: block">
       <rect width="390" height="380" fill="#17263A"/>
       <circle cx="250" cy="150" r="96" fill="#FF7A45"/>
       <path d="M0 250 C70 210 130 290 200 250 S320 210 390 250 V380 H0Z" fill="#2F5C8C"/>
       <path d="M0 290 C80 255 140 325 210 290 S330 260 390 290 V380 H0Z" fill="#8AB4FF"/>
-      <g stroke="#ECEBE6" stroke-opacity="0.18" stroke-width="1">
-        <path d="M0 60H390M0 120H390M0 180H390M0 240H390M0 300H390"/>
-        <path d="M65 0V380M130 0V380M195 0V380M260 0V380M325 0V380"/>
-      </g>
     </svg>
-    <div style="position: absolute; left: 20px; bottom: 20px; display: flex; align-items: center; gap: 8px; background: #0F1013; border: 1px solid #2B2F37; border-radius: 999px; padding: 8px 14px 8px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #ECEBE6">
+    <div style="position: absolute; left: 20px; bottom: 20px; display: flex; align-items: center; gap: 8px; background: #0F1013; border: 1px solid #2B2F37; border-radius: 999px; padding: 8px 14px 8px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-      SGL-7F3A-91C2 · fingerprinted
+      SGL-7F3A-91C2 · on record
     </div>
+    <div style="position: absolute; right: 20px; top: 20px; background: #FF7A45; color: #141414; border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 13px">+ $18.40 royalty</div>
   </div>
   <div style="flex: 1; padding: 28px 24px 32px; display: flex; flex-direction: column; gap: 20px">
     <div style="display: flex; align-items: center; gap: 10px">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF7A45" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><circle cx="12" cy="11" r="2.5"/></svg>
-      <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 0.02em">Sigil</span>
+      <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px">Sigil</span>
     </div>
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.08; letter-spacing: -0.01em">Share your art anywhere. We'll watch where it goes.</h1>
-    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #A6A8AF">Sigil fingerprints and encrypts every piece, then an AI agent tracks it across the web and takes down stolen copies for you.</p>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.08">Your art, on record. Your royalties, collected.</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #A6A8AF">Register each piece once. When it's printed, licensed or used to train AI, Sigil traces the payment back to you.</p>
     <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
-      <a href="#Signup" style="height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Create artist account</a>
-      <a href="#Home" style="height: 54px; border-radius: 14px; border: 1px solid #2B2F37; color: #ECEBE6; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 16px; text-decoration: none">I already have an account</a>
+      <a href="#Upload" style="height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Set up my footprint</a>
+      <a href="#Royalties" style="height: 54px; border-radius: 14px; border: 1px solid #2B2F37; color: #ECEBE6; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 16px; text-decoration: none">I already have an account</a>
     </div>
   </div>
 </div>
 </section><figcaption>01 Welcome</figcaption></figure>
-<figure class="slot" data-id="Signup" data-title="02 Verify artist"><section class="screen" id="s-Signup" aria-label="02 Verify artist">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 24px; box-sizing: border-box; gap: 22px">
-  <div style="display: flex; align-items: center; justify-content: space-between">
-    <a href="#Welcome" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Step 1 of 3</span>
-  </div>
-  <div style="display: flex; gap: 6px">
-    <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
-    <div style="flex: 1; height: 4px; border-radius: 2px; background: #2B2F37"></div>
-    <div style="flex: 1; height: 4px; border-radius: 2px; background: #2B2F37"></div>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 8px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Verify you're the artist</h1>
-    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">Takedown notices only work when ownership is provable. We link your identity to every piece you protect.</p>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 14px">
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <label for="nm" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Legal name</label>
-      <input id="nm" value="Mira Okafor" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px">
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <label for="ar" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Artist name</label>
-      <input id="ar" value="miraokafor.art" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px">
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <label for="em" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Email</label>
-      <input id="em" type="email" value="mira@studio-okafor.com" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px">
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 10px">
-    <span style="font-size: 13px; font-weight: 500; color: #CFCFCA">Link the accounts you post from</span>
-    <div style="display: flex; flex-wrap: wrap; gap: 8px">
-      <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #8AB4FF; background: #1A2333; color: #ECEBE6; font: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Instagram</button>
-      <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #8AB4FF; background: #1A2333; color: #ECEBE6; font: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>ArtStation</button>
-      <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">+ Behance</button>
-      <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">+ X</button>
-      <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">+ Website</button>
-    </div>
-  </div>
-  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
-    <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.45; color: #A6A8AF">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true" style="flex: none; margin-top: 1px"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-      Your ID is verified once, then encrypted. It's only shared with a host when you approve a takedown.
-    </div>
-    <a href="#Upload" style="height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Verify &amp; continue</a>
-  </div>
-</div>
-</section><figcaption>02 Verify artist</figcaption></figure>
-<figure class="slot" data-id="Upload" data-title="03 Add artwork"><section class="screen" id="s-Upload" aria-label="03 Add artwork">
+
+<figure class="slot" data-id="Upload" data-title="02 Add artwork"><section class="screen" id="s-Upload" aria-label="02 Add artwork">
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 24px; box-sizing: border-box; gap: 20px">
   <div style="display: flex; align-items: center; justify-content: space-between">
-    <a href="#Signup" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Step 2 of 3</span>
+    <a href="#Welcome" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Step 1 of 2</span>
   </div>
   <div style="display: flex; gap: 6px">
-    <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
     <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
     <div style="flex: 1; height: 4px; border-radius: 2px; background: #2B2F37"></div>
   </div>
   <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Add your artwork</h1>
   <div style="position: relative; height: 230px; border-radius: 18px; overflow: hidden; border: 1px solid #2B2F37">
     <svg viewBox="0 0 342 230" width="342" height="230" role="img" aria-label="Uploaded artwork preview, Tidal Bloom" style="display: block">
-      <rect width="342" height="230" fill="#17263A"/>
-      <circle cx="220" cy="92" r="60" fill="#FF7A45"/>
+      <rect width="342" height="230" fill="#17263A"/><circle cx="220" cy="92" r="60" fill="#FF7A45"/>
       <path d="M0 150 C60 125 115 175 175 150 S285 125 342 150 V230 H0Z" fill="#2F5C8C"/>
       <path d="M0 175 C70 155 125 200 185 175 S290 155 342 175 V230 H0Z" fill="#8AB4FF"/>
     </svg>
-    <div style="position: absolute; left: 12px; top: 12px; background: #0F1013; border-radius: 8px; padding: 6px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #CFCFCA">tidal-bloom_final.png · 6000×4000 · 38 MB</div>
-    <button style="position: absolute; right: 12px; bottom: 12px; height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #2B2F37; background: #0F1013; color: #ECEBE6; font: inherit; font-size: 13px">Replace</button>
+    <div style="position: absolute; left: 12px; top: 12px; background: #0F1013; border-radius: 8px; padding: 6px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #CFCFCA">tidal-bloom_final.png · 6000×4000</div>
   </div>
   <div style="display: flex; flex-direction: column; gap: 6px">
     <label for="t" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Title</label>
     <input id="t" value="Tidal Bloom" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px">
   </div>
-  <div style="display: flex; gap: 12px">
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
-      <label for="y" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Created</label>
-      <input id="y" value="Sep 2026" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px; width: 100%; box-sizing: border-box">
-    </div>
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
-      <label for="ty" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Type</label>
-      <input id="ty" value="Digital painting" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px; width: 100%; box-sizing: border-box">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <label for="ar" style="font-size: 13px; font-weight: 500; color: #CFCFCA">Credited as</label>
+    <input id="ar" value="Mira Okafor" style="height: 48px; border-radius: 12px; border: 1px solid #2B2F37; background: #17191E; color: #ECEBE6; padding: 0 14px; font: inherit; font-size: 15px">
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px">
+    <span style="font-size: 13px; font-weight: 500; color: #CFCFCA">Already posted on</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <span style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #8AB4FF; background: #1A2333; font-size: 13px; display: flex; align-items: center">Instagram</span>
+      <span style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #8AB4FF; background: #1A2333; font-size: 13px; display: flex; align-items: center">ArtStation</span>
+      <span style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; color: #CFCFCA; font-size: 13px; display: flex; align-items: center">+ Add</span>
     </div>
   </div>
-  <div style="border-radius: 14px; border: 1px dashed #3A3F49; padding: 14px; display: flex; align-items: center; gap: 12px">
-    <div style="width: 40px; height: 40px; border-radius: 10px; background: #1A2333; display: flex; align-items: center; justify-content: center; flex: none">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M4 7h6l2 2h8v10H4z"/></svg>
-    </div>
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-      <span style="font-size: 14px; font-weight: 500">Proof of creation</span>
-      <span style="font-size: 12px; color: #A6A8AF">tidal-bloom.psd · 42 layers · added</span>
-    </div>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
-  </div>
-  <a href="#Protect" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Next: choose protection</a>
+  <a href="#Footprint" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Next: set up footprint</a>
 </div>
-</section><figcaption>03 Add artwork</figcaption></figure>
-<figure class="slot" data-id="Protect" data-title="04 Protection layers"><section class="screen" id="s-Protect" aria-label="04 Protection layers">
+</section><figcaption>02 Add artwork</figcaption></figure>
+
+<figure class="slot" data-id="Footprint" data-title="03 Digital footprint"><section class="screen" id="s-Footprint" aria-label="03 Digital footprint">
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 24px; box-sizing: border-box; gap: 18px">
   <div style="display: flex; align-items: center; justify-content: space-between">
-    <a href="#Upload" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Step 3 of 3</span>
+    <a href="#Upload" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Step 2 of 2</span>
   </div>
   <div style="display: flex; gap: 6px">
     <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
     <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
-    <div style="flex: 1; height: 4px; border-radius: 2px; background: #FF7A45"></div>
   </div>
   <div style="display: flex; flex-direction: column; gap: 6px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Lock it down</h1>
-    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">Layers are invisible to viewers. Recommended set is on.</p>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Your digital footprint</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">This is how buyers and platforms know a piece is yours, and who to pay.</p>
   </div>
   <div style="display: flex; flex-direction: column; border: 1px solid #2B2F37; border-radius: 16px; background: #15171B">
     <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #23262C">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
         <span style="font-size: 15px; font-weight: 600">Invisible fingerprint</span>
-        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Survives crops, filters, screenshots and re-compression</span>
+        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Recognises the piece even after crops and re-uploads</span>
       </div>
       <button aria-label="Invisible fingerprint, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
     </div>
     <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #23262C">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-        <span style="font-size: 15px; font-weight: 600">Encrypted master file</span>
-        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Full-res original sealed with AES-256; only you hold the key</span>
-      </div>
-      <button aria-label="Encrypted master file, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #23262C">
-      <div style="display: flex; gap: 12px; align-items: center">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-          <span style="font-size: 15px; font-weight: 600">AI-training shield</span>
-          <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Adds a cloak that confuses models scraping your style</span>
-        </div>
-        <button aria-label="AI-training shield, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
-      </div>
-      <div role="group" aria-label="Shield strength" style="display: flex; background: #0F1013; border-radius: 10px; padding: 3px; gap: 3px">
-        <button style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Light</button>
-        <button aria-pressed="true" style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: #2A3142; color: #ECEBE6; font: inherit; font-size: 13px; font-weight: 600">Balanced</button>
-        <button style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Max</button>
-      </div>
-    </div>
-    <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #23262C">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
         <span style="font-size: 15px; font-weight: 600">Content Credentials</span>
-        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Signed C2PA record of authorship, readable by platforms</span>
+        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Signed C2PA authorship record that platforms can read</span>
       </div>
       <button aria-label="Content Credentials, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
     </div>
     <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-        <span style="font-size: 15px; font-weight: 600">Visible watermark</span>
-        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Corner signature on shared copies</span>
+        <span style="font-size: 15px; font-weight: 600">Public royalty registry</span>
+        <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Lists you as the payee for prints, stock and AI-training use</span>
       </div>
-      <button aria-label="Visible watermark, off" aria-pressed="false" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #2B2F37; position: relative; flex: none"><span style="position: absolute; left: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #6B6E76"></span></button>
+      <button aria-label="Public royalty registry, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
     </div>
-  </div>
-  <a href="#Share" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 16px; text-decoration: none">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-    Encrypt &amp; protect
-  </a>
-</div>
-</section><figcaption>04 Protection layers</figcaption></figure>
-<figure class="slot" data-id="Share" data-title="05 Share to platforms"><section class="screen" id="s-Share" aria-label="05 Share to platforms">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 24px; box-sizing: border-box; gap: 18px">
-  <div style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 16px; background: #1A2333; border: 1px solid #2F4466">
-    <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Tidal Bloom thumbnail" style="border-radius: 12px; flex: none">
-      <rect width="64" height="64" fill="#17263A"/><circle cx="42" cy="24" r="14" fill="#FF7A45"/><path d="M0 42 C12 36 22 48 34 42 S54 36 64 42 V64 H0Z" fill="#8AB4FF"/>
-    </svg>
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
-      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #8AB4FF; font-weight: 600">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-        Protected
-      </div>
-      <span style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Tidal Bloom</span>
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A6A8AF">SGL-7F3A-91C2 · 4 layers</span>
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 6px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15">Where should it go?</h1>
-    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">Each platform gets its own trace ID, so if a copy leaks we know exactly where it was taken from.</p>
   </div>
   <div style="display: flex; flex-direction: column; gap: 10px">
-    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2F4466; background: #15171B">
-      <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #8AB4FF">
-      <span style="flex: 1; font-size: 15px; font-weight: 500">Instagram</span>
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A6A8AF">trace ·IG-04</span>
-    </label>
-    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2F4466; background: #15171B">
-      <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #8AB4FF">
-      <span style="flex: 1; font-size: 15px; font-weight: 500">ArtStation</span>
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A6A8AF">trace ·AS-11</span>
-    </label>
-    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2F4466; background: #15171B">
-      <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #8AB4FF">
-      <span style="flex: 1; font-size: 15px; font-weight: 500">X</span>
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A6A8AF">trace ·X-27</span>
-    </label>
-    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2B2F37; background: transparent">
-      <input type="checkbox" style="width: 20px; height: 20px; accent-color: #8AB4FF">
-      <span style="flex: 1; font-size: 15px; font-weight: 500; color: #CFCFCA">Behance</span>
-      <span style="font-size: 12px; color: #A6A8AF">Connect</span>
-    </label>
+    <span style="font-size: 13px; font-weight: 500; color: #CFCFCA">Royalty rate for AI training</span>
+    <div role="group" aria-label="AI training rate" style="display: flex; background: #15171B; border: 1px solid #2B2F37; border-radius: 12px; padding: 3px; gap: 3px">
+      <button style="flex: 1; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Opt out</button>
+      <button aria-pressed="true" style="flex: 1; height: 38px; border: 0; border-radius: 9px; background: #2A3142; color: #ECEBE6; font: inherit; font-size: 13px; font-weight: 600">Standard</button>
+      <button style="flex: 1; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Premium</button>
+    </div>
   </div>
-  <div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; border: 1px solid #2B2F37">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-    <span style="flex: 1; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #CFCFCA">sigil.art/m/tidal-bloom</span>
-    <button style="height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #2B2F37; background: transparent; color: #ECEBE6; font: inherit; font-size: 13px">Copy link</button>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: #1A2333; border: 1px solid #2F4466">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true" style="flex: none"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 600">Footprint ID</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #CFCFCA">SGL-7F3A-91C2</span>
+    </div>
   </div>
-  <a href="#Home" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Publish to 3 platforms</a>
+  <a href="#Royalties" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Register footprint</a>
 </div>
-</section><figcaption>05 Share to platforms</figcaption></figure>
-<figure class="slot" data-id="Home" data-title="06 Home"><section class="screen" id="s-Home" aria-label="06 Home">
+</section><figcaption>03 Digital footprint</figcaption></figure>
+
+<figure class="slot" data-id="Royalties" data-title="04 Royalties"><section class="screen" id="s-Royalties" aria-label="04 Royalties">
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif">
-  <div style="padding: 20px 20px 0; display: flex; flex-direction: column; gap: 14px">
+  <div style="padding: 20px; display: flex; flex-direction: column; gap: 14px">
     <div style="display: flex; align-items: center; justify-content: space-between">
       <div style="display: flex; flex-direction: column; gap: 2px">
         <span style="font-size: 13px; color: #A6A8AF">Saturday, 10 Oct</span>
         <span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">Hi, Mira</span>
       </div>
-      <a href="#Settings" aria-label="Profile and agent settings" style="width: 44px; height: 44px; border-radius: 50%; background: #2A3142; display: flex; align-items: center; justify-content: center; color: #ECEBE6; text-decoration: none; font-weight: 600">MO</a>
+      <span style="width: 44px; height: 44px; border-radius: 50%; background: #2A3142; display: flex; align-items: center; justify-content: center; font-weight: 600">MO</span>
     </div>
-    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #15171B; border: 1px solid #2B2F37">
-      <span style="width: 10px; height: 10px; border-radius: 50%; background: #8AB4FF; flex: none"></span>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-        <span style="font-size: 14px; font-weight: 600">Agent is watching</span>
-        <span style="font-size: 12px; color: #A6A8AF">2.4M pages scanned today · last sweep 4 min ago</span>
-      </div>
-      <a href="#Tracking" style="font-size: 13px; text-decoration: none">Radar</a>
+    <div style="padding: 18px; border-radius: 18px; background: #2B1A12; border: 1px solid #7A3A1F; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 13px; color: #E6B7A2">Ready to collect</span>
+      <span style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; line-height: 1">$312.60</span>
+      <span style="font-size: 12px; color: #E6B7A2">$1,240 earned this year · 3 pieces on record</span>
+      <a href="#Payout" style="margin-top: 10px; height: 48px; border-radius: 12px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; text-decoration: none">Collect royalties</a>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
-      <div style="padding: 12px; border-radius: 14px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 4px">
-        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">38</span>
-        <span style="font-size: 12px; color: #A6A8AF">Protected</span>
+    <span style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700">Where it came from</span>
+    <div style="display: flex; flex-direction: column; border: 1px solid #2B2F37; border-radius: 16px; background: #15171B">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #23262C">
+        <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="Tidal Bloom" style="border-radius: 10px; flex: none"><rect width="64" height="64" fill="#17263A"/><circle cx="42" cy="24" r="14" fill="#FF7A45"/><path d="M0 42 C12 36 22 48 34 42 S54 36 64 42 V64 H0Z" fill="#8AB4FF"/></svg>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Tidal Bloom</span><span style="font-size: 12px; color: #A6A8AF">41 prints · Society6</span></div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px">$164.00</span>
       </div>
-      <div style="padding: 12px; border-radius: 14px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 4px">
-        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">214</span>
-        <span style="font-size: 12px; color: #A6A8AF">Sightings</span>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #23262C">
+        <svg width="40" height="40" viewBox="0 0 108 84" role="img" aria-label="Night Market" style="border-radius: 10px; flex: none"><rect width="108" height="84" fill="#2A1F3D"/><rect x="14" y="30" width="22" height="40" fill="#F2C14E"/><rect x="44" y="20" width="22" height="50" fill="#F2C14E"/><rect x="74" y="36" width="22" height="34" fill="#F2C14E"/></svg>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Night Market</span><span style="font-size: 12px; color: #A6A8AF">AI training dataset · 1 licence</span></div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px">$96.00</span>
       </div>
-      <div style="padding: 12px; border-radius: 14px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 4px">
-        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">12</span>
-        <span style="font-size: 12px; color: #A6A8AF">Taken down</span>
-      </div>
-    </div>
-    <a href="#Alert" style="display: flex; gap: 12px; align-items: center; padding: 14px; border-radius: 16px; background: #2B1A12; border: 1px solid #7A3A1F; text-decoration: none; color: #ECEBE6">
-      <div style="width: 40px; height: 40px; border-radius: 12px; background: #FF7A45; display: flex; align-items: center; justify-content: center; flex: none">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.2" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
-      </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-        <span style="font-size: 14px; font-weight: 600">Tidal Bloom is being sold</span>
-        <span style="font-size: 12px; color: #E6B7A2">On teeloot.store as a t-shirt · 98.6% match</span>
-      </div>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-    </a>
-    <div style="padding: 14px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 8px">
-      <div style="display: flex; align-items: center; gap: 8px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>
-        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8AB4FF">This week's summary</span>
-      </div>
-      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #DEDDD8">Your work was seen on 46 new sites. 41 were legit reposts that credited you. 3 sold prints without permission — 2 are already down. Night Market is trending on a Pinterest board with 9k saves.</p>
-    </div>
-    <div style="display: flex; align-items: baseline; justify-content: space-between">
-      <span style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700">Your vault</span>
-      <a href="#Upload" style="font-size: 13px; text-decoration: none">+ Protect new</a>
-    </div>
-    <div style="display: flex; gap: 10px">
-      <a href="#Artwork" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #ECEBE6; width: 108px">
-        <svg width="108" height="84" viewBox="0 0 108 84" role="img" aria-label="Tidal Bloom" style="border-radius: 12px"><rect width="108" height="84" fill="#17263A"/><circle cx="70" cy="32" r="18" fill="#FF7A45"/><path d="M0 56 C20 48 36 64 56 56 S90 48 108 56 V84 H0Z" fill="#8AB4FF"/></svg>
-        <span style="font-size: 12px">Tidal Bloom</span>
-      </a>
-      <a href="#Artwork" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #ECEBE6; width: 108px">
-        <svg width="108" height="84" viewBox="0 0 108 84" role="img" aria-label="Night Market" style="border-radius: 12px"><rect width="108" height="84" fill="#2A1F3D"/><rect x="14" y="30" width="22" height="40" fill="#F2C14E"/><rect x="44" y="20" width="22" height="50" fill="#F2C14E"/><rect x="74" y="36" width="22" height="34" fill="#F2C14E"/><circle cx="86" cy="16" r="8" fill="#E86A92"/></svg>
-        <span style="font-size: 12px">Night Market</span>
-      </a>
-      <a href="#Artwork" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #ECEBE6; width: 108px">
-        <svg width="108" height="84" viewBox="0 0 108 84" role="img" aria-label="Paper Moons" style="border-radius: 12px"><rect width="108" height="84" fill="#E8E1D3"/><circle cx="34" cy="42" r="20" fill="#2B2B2B"/><circle cx="72" cy="42" r="20" fill="#C96F4A"/></svg>
-        <span style="font-size: 12px">Paper Moons</span>
-      </a>
-    </div>
-  </div>
-  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #15171B; border-top: 1px solid #272A31; display: flex; justify-content: space-around; padding: 8px 8px 0; box-sizing: border-box">
-    <a href="#Home" aria-current="page" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #FF7A45; font-size: 11px; font-weight: 600"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-    <a href="#Upload" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Protect</a>
-    <a href="#Tracking" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg>Radar</a>
-    <a href="#Licensing" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>Licenses</a>
-    <a href="#Settings" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Agent</a>
-  </nav>
-</div>
-</section><figcaption>06 Home</figcaption></figure>
-<figure class="slot" data-id="Tracking" data-title="07 Radar feed"><section class="screen" id="s-Tracking" aria-label="07 Radar feed">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif">
-  <div style="padding: 20px 20px 0; display: flex; flex-direction: column; gap: 14px">
-    <div style="display: flex; align-items: center; justify-content: space-between">
-      <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Radar</h1>
-      <button aria-label="Search sightings" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; background: transparent; color: #ECEBE6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg></button>
-    </div>
-    <div style="padding: 14px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 10px">
-      <div style="display: flex; justify-content: space-between; font-size: 13px">
-        <span style="color: #A6A8AF">Last 30 days · 214 sightings</span>
-        <span style="color: #A6A8AF">all artworks</span>
-      </div>
-      <div role="img" aria-label="168 credited, 39 unlicensed, 7 AI lookalikes" style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px">
-        <div style="flex: 168; background: #8AB4FF"></div>
-        <div style="flex: 39; background: #FF7A45"></div>
-        <div style="flex: 7; background: #ECEBE6"></div>
-      </div>
-      <div style="display: flex; gap: 14px; font-size: 12px; color: #CFCFCA">
-        <span style="display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: #8AB4FF"></span>Credited 168</span>
-        <span style="display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: #FF7A45"></span>Unlicensed 39</span>
-        <span style="display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: #ECEBE6"></span>AI copies 7</span>
-      </div>
-    </div>
-    <div role="group" aria-label="Filter sightings" style="display: flex; gap: 8px">
-      <button aria-pressed="true" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #ECEBE6; color: #141414; font: inherit; font-size: 13px; font-weight: 600">All</button>
-      <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">Unlicensed</button>
-      <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">Credited</button>
-      <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #2B2F37; background: transparent; color: #CFCFCA; font: inherit; font-size: 13px">AI</button>
-    </div>
-    <div style="display: flex; flex-direction: column">
-      <a href="#Alert" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #23262C; text-decoration: none; color: #ECEBE6">
-        <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Tidal Bloom" style="border-radius: 10px; flex: none"><rect width="48" height="48" fill="#17263A"/><circle cx="31" cy="18" r="10" fill="#FF7A45"/><path d="M0 32 C9 27 17 36 26 32 S40 27 48 32 V48 H0Z" fill="#8AB4FF"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-          <span style="font-size: 14px; font-weight: 600">teeloot.store</span>
-          <span style="font-size: 12px; color: #A6A8AF">Sold on t-shirts · leaked via IG-04 · 12m ago</span>
-        </div>
-        <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #3A2014; color: #FFA27E">Theft</span>
-      </a>
-      <a href="#Artwork" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #23262C; text-decoration: none; color: #ECEBE6">
-        <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Night Market" style="border-radius: 10px; flex: none"><rect width="48" height="48" fill="#2A1F3D"/><rect x="7" y="18" width="10" height="22" fill="#F2C14E"/><rect x="20" y="12" width="10" height="28" fill="#F2C14E"/><rect x="33" y="22" width="10" height="18" fill="#F2C14E"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-          <span style="font-size: 14px; font-weight: 600">Pinterest board "cozy city art"</span>
-          <span style="font-size: 12px; color: #A6A8AF">9.1k saves · links back to you · 2h ago</span>
-        </div>
-        <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">Credited</span>
-      </a>
-      <a href="#Artwork" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #23262C; text-decoration: none; color: #ECEBE6">
-        <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Paper Moons" style="border-radius: 10px; flex: none"><rect width="48" height="48" fill="#E8E1D3"/><circle cx="17" cy="24" r="10" fill="#2B2B2B"/><circle cx="32" cy="24" r="10" fill="#C96F4A"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-          <span style="font-size: 14px; font-weight: 600">AI image site · style clone</span>
-          <span style="font-size: 12px; color: #A6A8AF">"in the style of Mira Okafor" prompt · 5h ago</span>
-        </div>
-        <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #2A2A28; color: #ECEBE6">AI copy</span>
-      </a>
-      <a href="#Artwork" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #23262C; text-decoration: none; color: #ECEBE6">
-        <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Tidal Bloom" style="border-radius: 10px; flex: none"><rect width="48" height="48" fill="#17263A"/><circle cx="31" cy="18" r="10" fill="#FF7A45"/><path d="M0 32 C9 27 17 36 26 32 S40 27 48 32 V48 H0Z" fill="#8AB4FF"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-          <span style="font-size: 14px; font-weight: 600">Reddit r/DigitalPainting</span>
-          <span style="font-size: 12px; color: #A6A8AF">Repost, credited in comments · yesterday</span>
-        </div>
-        <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">Credited</span>
-      </a>
-      <a href="#Takedown" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; text-decoration: none; color: #ECEBE6">
-        <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Night Market" style="border-radius: 10px; flex: none"><rect width="48" height="48" fill="#2A1F3D"/><rect x="7" y="18" width="10" height="22" fill="#F2C14E"/><rect x="20" y="12" width="10" height="28" fill="#F2C14E"/><rect x="33" y="22" width="10" height="18" fill="#F2C14E"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-          <span style="font-size: 14px; font-weight: 600">wallartz.co</span>
-          <span style="font-size: 12px; color: #A6A8AF">Canvas prints · removed after notice · 2d ago</span>
-        </div>
-        <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #22252B; color: #CFCFCA">Removed</span>
-      </a>
-    </div>
-  </div>
-  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #15171B; border-top: 1px solid #272A31; display: flex; justify-content: space-around; padding: 8px 8px 0; box-sizing: border-box">
-    <a href="#Home" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-    <a href="#Upload" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Protect</a>
-    <a href="#Tracking" aria-current="page" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #FF7A45; font-size: 11px; font-weight: 600"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg>Radar</a>
-    <a href="#Licensing" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>Licenses</a>
-    <a href="#Settings" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Agent</a>
-  </nav>
-</div>
-</section><figcaption>07 Radar feed</figcaption></figure>
-<figure class="slot" data-id="Artwork" data-title="08 Artwork + AI summary"><section class="screen" id="s-Artwork" aria-label="08 Artwork + AI summary">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column">
-  <div style="position: relative; height: 236px; flex: none">
-    <svg viewBox="0 0 390 236" width="390" height="236" role="img" aria-label="Tidal Bloom artwork" style="display: block">
-      <rect width="390" height="236" fill="#17263A"/><circle cx="250" cy="96" r="64" fill="#FF7A45"/>
-      <path d="M0 156 C70 128 130 182 200 156 S320 128 390 156 V236 H0Z" fill="#2F5C8C"/>
-      <path d="M0 184 C80 162 140 206 210 184 S330 162 390 184 V236 H0Z" fill="#8AB4FF"/>
-    </svg>
-    <a href="#Home" aria-label="Back" style="position: absolute; left: 16px; top: 16px; width: 44px; height: 44px; border-radius: 12px; background: #0F1013; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-  </div>
-  <div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 14px; flex: 1">
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Tidal Bloom</h1>
-      <div style="display: flex; flex-wrap: wrap; gap: 6px">
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">Fingerprint</span>
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">Encrypted master</span>
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">AI shield</span>
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 6px; background: #1A2333; color: #8AB4FF">C2PA</span>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px">
+        <svg width="40" height="40" viewBox="0 0 108 84" role="img" aria-label="Paper Moons" style="border-radius: 10px; flex: none"><rect width="108" height="84" fill="#E8E1D3"/><circle cx="34" cy="42" r="20" fill="#2B2B2B"/><circle cx="72" cy="42" r="20" fill="#C96F4A"/></svg>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Paper Moons</span><span style="font-size: 12px; color: #A6A8AF">Stock download · 7 uses</span></div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px">$52.60</span>
       </div>
     </div>
     <div style="padding: 14px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column; gap: 8px">
-      <div style="display: flex; align-items: center; justify-content: space-between">
-        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8AB4FF">Agent summary</span>
-        <span style="font-size: 11px; color: #A6A8AF">updated 4m ago</span>
-      </div>
-      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #DEDDD8">Seen on 63 pages in 21 days. Most traffic comes from your Instagram post being reshared with credit. One copy leaked from your Instagram upload and is now printed on shirts — takedown is ready to file.</p>
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8AB4FF">Agent summary</span>
+      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #DEDDD8">Tidal Bloom prints doubled this month. Night Market was picked for a licensed AI dataset at your Standard rate.</p>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 10px">
-      <span style="font-size: 14px; font-weight: 600">Where it's living</span>
-      <div style="display: flex; align-items: center; gap: 10px; font-size: 13px">
-        <span style="width: 92px; color: #CFCFCA">Instagram</span>
-        <div style="flex: 1; height: 8px; border-radius: 4px; background: #23262C"><div style="width: 82%; height: 8px; border-radius: 4px; background: #8AB4FF"></div></div>
-        <span style="width: 22px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12px">31</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 10px; font-size: 13px">
-        <span style="width: 92px; color: #CFCFCA">Pinterest</span>
-        <div style="flex: 1; height: 8px; border-radius: 4px; background: #23262C"><div style="width: 46%; height: 8px; border-radius: 4px; background: #8AB4FF"></div></div>
-        <span style="width: 22px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12px">17</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 10px; font-size: 13px">
-        <span style="width: 92px; color: #CFCFCA">Reddit</span>
-        <div style="flex: 1; height: 8px; border-radius: 4px; background: #23262C"><div style="width: 27%; height: 8px; border-radius: 4px; background: #8AB4FF"></div></div>
-        <span style="width: 22px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12px">10</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 10px; font-size: 13px">
-        <span style="width: 92px; color: #CFCFCA">Shops</span>
-        <div style="flex: 1; height: 8px; border-radius: 4px; background: #23262C"><div style="width: 14%; height: 8px; border-radius: 4px; background: #FF7A45"></div></div>
-        <span style="width: 22px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12px">5</span>
-      </div>
-    </div>
-    <div style="margin-top: auto; display: flex; gap: 10px">
-      <a href="#Tracking" style="flex: 1; height: 52px; border-radius: 14px; border: 1px solid #2B2F37; color: #ECEBE6; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 15px; text-decoration: none">All sightings</a>
-      <a href="#Alert" style="flex: 1; height: 52px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; text-decoration: none">Review theft</a>
-    </div>
+    <a href="#Upload" style="font-size: 14px; text-decoration: none; text-align: center">+ Add another piece</a>
   </div>
 </div>
-</section><figcaption>08 Artwork + AI summary</figcaption></figure>
-<figure class="slot" data-id="Alert" data-title="09 Theft detected"><section class="screen" id="s-Alert" aria-label="09 Theft detected">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box; gap: 16px">
-  <div style="display: flex; align-items: center; gap: 12px">
-    <a href="#Home" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-    <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 8px; background: #3A2014; color: #FFA27E">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/></svg>
-      Theft detected · 12 min ago
-    </span>
+</section><figcaption>04 Royalties</figcaption></figure>
+
+<figure class="slot" data-id="Payout" data-title="05 Collect payout"><section class="screen" id="s-Payout" aria-label="05 Collect payout">
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 24px; box-sizing: border-box; gap: 20px">
+  <a href="#Royalties" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Collect royalties</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">From 3 sources, matched to your footprint.</p>
   </div>
-  <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 25px; font-weight: 700; line-height: 1.2">Someone is selling Tidal Bloom on t-shirts</h1>
-  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <svg width="170" height="150" viewBox="0 0 170 150" role="img" aria-label="Your original" style="border-radius: 12px; width: 100%; height: auto"><rect width="170" height="150" fill="#17263A"/><circle cx="110" cy="58" r="34" fill="#FF7A45"/><path d="M0 98 C30 84 56 110 86 98 S140 84 170 98 V150 H0Z" fill="#8AB4FF"/></svg>
-      <span style="font-size: 12px; color: #A6A8AF">Your original</span>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <svg width="170" height="150" viewBox="0 0 170 150" role="img" aria-label="Listing found on teeloot.store: a t-shirt printed with your artwork" style="border-radius: 12px; width: 100%; height: auto"><rect width="170" height="150" fill="#E7E4DD"/><path d="M50 24 L70 16 Q85 28 100 16 L120 24 L142 46 L126 60 L118 52 V136 H52 V52 L44 60 L28 46Z" fill="#FAFAF7" stroke="#C9C5BC"/><rect x="62" y="54" width="46" height="40" fill="#17263A"/><circle cx="92" cy="68" r="9" fill="#FF7A45"/><path d="M62 82 C70 78 78 86 86 82 S102 78 108 82 V94 H62Z" fill="#8AB4FF"/></svg>
-      <span style="font-size: 12px; color: #A6A8AF">teeloot.store · $24</span>
-    </div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 14px; background: #15171B; border: 1px solid #2B2F37">
-    <span style="font-size: 14px">Fingerprint match</span>
-    <span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FF7A45">98.6%</span>
+  <div style="text-align: center; padding: 24px 0; display: flex; flex-direction: column; gap: 6px">
+    <span style="font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; line-height: 1">$312.60</span>
+    <span style="font-size: 13px; color: #A6A8AF">Sigil fee 5% ($15.63) already deducted</span>
   </div>
   <div style="display: flex; flex-direction: column; gap: 10px">
-    <span style="font-size: 14px; font-weight: 600">Evidence the agent collected</span>
-    <div style="display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: #DEDDD8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"/></svg>Hidden fingerprint decoded: SGL-7F3A-91C2</div>
-    <div style="display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: #DEDDD8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"/></svg>Trace ID IG-04 — copied from your Instagram post</div>
-    <div style="display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: #DEDDD8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"/></svg>No license on file · listing archived with timestamp</div>
-    <div style="display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: #DEDDD8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2.5" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"/></svg>Host identified: Shopify-based store, abuse contact found</div>
+    <span style="font-size: 13px; font-weight: 500; color: #CFCFCA">Pay to</span>
+    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2F4466; background: #15171B">
+      <input type="radio" name="pm" checked style="width: 20px; height: 20px; accent-color: #8AB4FF">
+      <span style="flex: 1; font-size: 15px; font-weight: 500">Bank account</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">FI •• 4821</span>
+    </label>
+    <label style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px; border-radius: 14px; border: 1px solid #2B2F37">
+      <input type="radio" name="pm" style="width: 20px; height: 20px; accent-color: #8AB4FF">
+      <span style="flex: 1; font-size: 15px; font-weight: 500; color: #CFCFCA">PayPal</span>
+      <span style="font-size: 12px; color: #A6A8AF">mira@studio-okafor.com</span>
+    </label>
   </div>
-  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
-    <a href="#Takedown" style="height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">File takedown now</a>
-    <div style="display: flex; gap: 10px">
-      <a href="#Licensing" style="flex: 1; height: 48px; border-radius: 14px; border: 1px solid #2B2F37; color: #ECEBE6; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none">Offer a license</a>
-      <a href="#Home" style="flex: 1; height: 48px; border-radius: 14px; border: 1px solid #2B2F37; color: #ECEBE6; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none">Not theft</a>
+  <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border: 1px solid #2B2F37; border-radius: 14px; background: #15171B">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+      <span style="font-size: 15px; font-weight: 600">Auto-collect monthly</span>
+      <span style="font-size: 12px; color: #A6A8AF">Paid out on the 1st when over $50</span>
     </div>
+    <button aria-label="Auto-collect monthly, off" aria-pressed="false" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #2B2F37; position: relative; flex: none"><span style="position: absolute; left: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #6B6E76"></span></button>
   </div>
+  <a href="#Royalties" style="margin-top: auto; height: 54px; border-radius: 14px; background: #FF7A45; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Transfer $312.60</a>
 </div>
-</section><figcaption>09 Theft detected</figcaption></figure>
-<figure class="slot" data-id="Takedown" data-title="10 Auto takedown"><section class="screen" id="s-Takedown" aria-label="10 Auto takedown">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box; gap: 18px">
-  <div style="display: flex; align-items: center; justify-content: space-between">
-    <a href="#Alert" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #2B2F37; display: flex; align-items: center; justify-content: center; color: #ECEBE6">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </a>
-    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A6A8AF">Case #TD-0418</span>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 6px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; line-height: 1.15">Takedown underway</h1>
-    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #A6A8AF">Your agent is handling this. Hosts usually respond within 24–72 hours.</p>
-  </div>
-  <div style="padding: 18px 16px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; flex-direction: column">
-    <div style="display: flex; gap: 14px">
-      <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #8AB4FF; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F1013" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span style="width: 2px; height: 30px; background: #8AB4FF"></span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 2px"><span style="font-size: 14px; font-weight: 600">Evidence packaged</span><span style="font-size: 12px; color: #A6A8AF">Fingerprint, C2PA record, archived listing · 2:41 PM</span></div>
-    </div>
-    <div style="display: flex; gap: 14px">
-      <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #8AB4FF; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F1013" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span style="width: 2px; height: 30px; background: #8AB4FF"></span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 2px"><span style="font-size: 14px; font-weight: 600">DMCA notice sent to host</span><span style="font-size: 12px; color: #A6A8AF">Signed with your verified identity · 2:42 PM</span></div>
-    </div>
-    <div style="display: flex; gap: 14px">
-      <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #8AB4FF; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F1013" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span style="width: 2px; height: 30px; background: #3A3F49"></span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 2px"><span style="font-size: 14px; font-weight: 600">Print supplier &amp; payment processor flagged</span><span style="font-size: 12px; color: #A6A8AF">Cuts off the seller's fulfilment · 2:44 PM</span></div>
-    </div>
-    <div style="display: flex; gap: 14px">
-      <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid #FF7A45; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><span style="width: 8px; height: 8px; border-radius: 50%; background: #FF7A45"></span></span><span style="width: 2px; height: 30px; background: #3A3F49"></span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 2px"><span style="font-size: 14px; font-weight: 600; color: #FFA27E">Waiting for host response</span><span style="font-size: 12px; color: #A6A8AF">Agent will follow up automatically in 48h</span></div>
-    </div>
-    <div style="display: flex; gap: 14px">
-      <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid #3A3F49; box-sizing: border-box"></span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 2px"><span style="font-size: 14px; font-weight: 600; color: #A6A8AF">Listing removed</span><span style="font-size: 12px; color: #8C8E95">We'll re-scan for re-uploads for 90 days</span></div>
-    </div>
-  </div>
-  <div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; border: 1px solid #2F4466; background: #1A2333">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg>
-    <div style="display: flex; flex-direction: column; gap: 4px">
-      <span style="font-size: 14px; font-weight: 600">Make this automatic?</span>
-      <span style="font-size: 12px; line-height: 1.45; color: #CFCFCA">For matches above 97% on commercial listings, file takedowns without asking me first.</span>
-      <a href="#Settings" style="font-size: 13px; font-weight: 600; text-decoration: none; margin-top: 2px">Turn on auto-takedown</a>
-    </div>
-  </div>
-  <div style="margin-top: auto; display: flex; gap: 10px">
-    <button style="flex: 1; height: 52px; border-radius: 14px; border: 1px solid #2B2F37; background: transparent; color: #ECEBE6; font: inherit; font-size: 15px">View notice</button>
-    <a href="#Home" style="flex: 1; height: 52px; border-radius: 14px; background: #ECEBE6; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; text-decoration: none">Back to home</a>
-  </div>
-</div>
-</section><figcaption>10 Auto takedown</figcaption></figure>
-<figure class="slot" data-id="Licensing" data-title="11 License requests"><section class="screen" id="s-Licensing" aria-label="11 License requests">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif">
-  <div style="padding: 20px 20px 0; display: flex; flex-direction: column; gap: 14px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Licenses</h1>
-    <div style="padding: 16px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; justify-content: space-between; align-items: flex-end">
-      <div style="display: flex; flex-direction: column; gap: 4px">
-        <span style="font-size: 12px; color: #A6A8AF">Earned from licenses · October</span>
-        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700">$1,240</span>
-      </div>
-      <span style="font-size: 12px; color: #A6A8AF">4 active</span>
-    </div>
-    <div style="display: flex; align-items: baseline; justify-content: space-between">
-      <span style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700">New requests</span>
-      <span style="font-size: 12px; color: #A6A8AF">2 pending</span>
-    </div>
-    <div style="padding: 16px; border-radius: 16px; background: #15171B; border: 1px solid #2F4466; display: flex; flex-direction: column; gap: 12px">
-      <div style="display: flex; gap: 12px; align-items: center">
-        <svg width="52" height="52" viewBox="0 0 52 52" role="img" aria-label="Night Market" style="border-radius: 10px; flex: none"><rect width="52" height="52" fill="#2A1F3D"/><rect x="7" y="20" width="11" height="24" fill="#F2C14E"/><rect x="21" y="13" width="11" height="31" fill="#F2C14E"/><rect x="35" y="24" width="11" height="20" fill="#F2C14E"/></svg>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-          <span style="font-size: 15px; font-weight: 600">Kestrel Coffee Co.</span>
-          <span style="font-size: 12px; color: #A6A8AF">wants Night Market for bag packaging</span>
-        </div>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
-        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #A6A8AF">Offer</span><span style="font-size: 15px; font-weight: 600">$800</span></div>
-        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #A6A8AF">Term</span><span style="font-size: 15px; font-weight: 600">12 months</span></div>
-        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #A6A8AF">Region</span><span style="font-size: 15px; font-weight: 600">EU</span></div>
-      </div>
-      <div style="font-size: 12px; line-height: 1.45; color: #CFCFCA; padding: 10px 12px; border-radius: 10px; background: #0F1013">Agent note: similar packaging deals for artists your size go for $900–1,400. Consider countering.</div>
-      <div style="display: flex; gap: 10px">
-        <button style="flex: 1; height: 46px; border-radius: 12px; border: 1px solid #2B2F37; background: transparent; color: #ECEBE6; font: inherit; font-size: 14px">Counter</button>
-        <button style="flex: 1; height: 46px; border-radius: 12px; border: 0; background: #FF7A45; color: #141414; font: inherit; font-size: 14px; font-weight: 600">Accept</button>
-      </div>
-    </div>
-    <div style="padding: 14px 16px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37; display: flex; gap: 12px; align-items: center">
-      <svg width="44" height="44" viewBox="0 0 44 44" role="img" aria-label="Tidal Bloom" style="border-radius: 10px; flex: none"><rect width="44" height="44" fill="#17263A"/><circle cx="28" cy="16" r="9" fill="#FF7A45"/><path d="M0 30 C8 26 15 34 24 30 S36 26 44 30 V44 H0Z" fill="#8AB4FF"/></svg>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-        <span style="font-size: 14px; font-weight: 600">Indie zine "Low Tide"</span>
-        <span style="font-size: 12px; color: #A6A8AF">Cover use · non-commercial · free + credit</span>
-      </div>
-      <button style="height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #2B2F37; background: transparent; color: #ECEBE6; font: inherit; font-size: 13px">Review</button>
-    </div>
-    <div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 14px; border: 1px dashed #3A3F49">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-      <span style="flex: 1; font-size: 13px; color: #CFCFCA">Every sighting page shows a "License this art" button</span>
-    </div>
-  </div>
-  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #15171B; border-top: 1px solid #272A31; display: flex; justify-content: space-around; padding: 8px 8px 0; box-sizing: border-box">
-    <a href="#Home" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-    <a href="#Upload" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Protect</a>
-    <a href="#Tracking" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg>Radar</a>
-    <a href="#Licensing" aria-current="page" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #FF7A45; font-size: 11px; font-weight: 600"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>Licenses</a>
-    <a href="#Settings" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Agent</a>
-  </nav>
-</div>
-</section><figcaption>11 License requests</figcaption></figure>
-<figure class="slot" data-id="Settings" data-title="12 Agent settings"><section class="screen" id="s-Settings" aria-label="12 Agent settings">
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #0F1013; color: #ECEBE6; font-family: 'IBM Plex Sans', sans-serif">
-  <div style="padding: 20px 20px 0; display: flex; flex-direction: column; gap: 14px">
-    <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Your agent</h1>
-    <div style="display: flex; gap: 12px; align-items: center; padding: 14px; border-radius: 16px; background: #15171B; border: 1px solid #2B2F37">
-      <span style="width: 48px; height: 48px; border-radius: 50%; background: #2A3142; display: flex; align-items: center; justify-content: center; font-weight: 600; flex: none">MO</span>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
-        <span style="font-size: 15px; font-weight: 600">Mira Okafor</span>
-        <span style="font-size: 12px; color: #A6A8AF">Verified artist · Pro plan · 38 works</span>
-      </div>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8AB4FF" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-    </div>
-    <div style="display: flex; flex-direction: column; border: 1px solid #2B2F37; border-radius: 16px; background: #15171B">
-      <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #23262C">
-        <div style="display: flex; gap: 12px; align-items: center">
-          <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-            <span style="font-size: 15px; font-weight: 600">Auto-takedown</span>
-            <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">File notices on clear commercial theft without asking</span>
-          </div>
-          <button aria-label="Auto-takedown, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px">
-          <div style="display: flex; justify-content: space-between; font-size: 13px">
-            <label for="thr" style="color: #CFCFCA">Minimum match</label>
-            <span style="font-family: 'IBM Plex Mono', monospace; color: #ECEBE6">97%</span>
-          </div>
-          <input id="thr" type="range" min="80" max="100" value="97" style="width: 100%; accent-color: #FF7A45">
-        </div>
-      </div>
-      <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #23262C">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-          <span style="font-size: 15px; font-weight: 600">Watch for AI style clones</span>
-          <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Flag generators prompted with your name</span>
-        </div>
-        <button aria-label="Watch for AI style clones, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
-      </div>
-      <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #23262C">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
-          <span style="font-size: 15px; font-weight: 600">Ignore credited reposts</span>
-          <span style="font-size: 12px; line-height: 1.4; color: #A6A8AF">Still counted in your summary, never reported</span>
-        </div>
-        <button aria-label="Ignore credited reposts, on" aria-pressed="true" style="width: 52px; height: 32px; border-radius: 999px; border: 0; background: #8AB4FF; position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0F1013"></span></button>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px 16px">
-        <span style="font-size: 15px; font-weight: 600">Summary report</span>
-        <div role="group" aria-label="Summary frequency" style="display: flex; background: #0F1013; border-radius: 10px; padding: 3px; gap: 3px">
-          <button style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Daily</button>
-          <button aria-pressed="true" style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: #2A3142; color: #ECEBE6; font: inherit; font-size: 13px; font-weight: 600">Weekly</button>
-          <button style="flex: 1; height: 34px; border: 0; border-radius: 8px; background: transparent; color: #A6A8AF; font: inherit; font-size: 13px">Monthly</button>
-        </div>
-      </div>
-    </div>
-    <div style="display: flex; flex-direction: column; border: 1px solid #2B2F37; border-radius: 16px; background: #15171B">
-      <a href="#Share" style="display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; border-bottom: 1px solid #23262C; text-decoration: none; color: #ECEBE6; font-size: 14px">Connected platforms<span style="color: #A6A8AF; font-size: 13px">3 linked</span></a>
-      <a href="#Signup" style="display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; text-decoration: none; color: #ECEBE6; font-size: 14px">Legal identity &amp; DMCA details<span style="color: #A6A8AF; font-size: 13px">Verified</span></a>
-    </div>
-  </div>
-  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #15171B; border-top: 1px solid #272A31; display: flex; justify-content: space-around; padding: 8px 8px 0; box-sizing: border-box">
-    <a href="#Home" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-    <a href="#Upload" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Protect</a>
-    <a href="#Tracking" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg>Radar</a>
-    <a href="#Licensing" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9A9CA3; font-size: 11px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>Licenses</a>
-    <a href="#Settings" aria-current="page" style="width: 64px; height: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #FF7A45; font-size: 11px; font-weight: 600"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Agent</a>
-  </nav>
-</div>
-</section><figcaption>12 Agent settings</figcaption></figure>
+</section><figcaption>05 Collect payout</figcaption></figure>
       </div>
     </div>
     <div class="controls">
@@ -789,7 +306,7 @@ body.overview .controls .nav-btn,body.overview .counter{display:none}
   var ids=slots.map(function(s){return s.dataset.id});
   var links=[].slice.call(document.querySelectorAll('[data-nav]'));
   var counter=document.getElementById('counter'), ovBtn=document.getElementById('ov');
-  var groups={0:'Onboard & protect',4:'Share & monitor',8:'Enforce & earn'};
+  var groups={0:'Set up footprint',3:'Collect royalties'};
   links.forEach(function(a,i){ if(groups[i]!==undefined){var g=document.createElement('li');g.className='group';g.textContent=groups[i];a.parentNode.parentNode.insertBefore(g,a.parentNode);} });
 
   function current(){var h=location.hash.slice(1);return ids.indexOf(h)>=0?h:ids[0]}
